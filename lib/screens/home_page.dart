@@ -1,5 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:e_com_wscube/constants/color_constants.dart';
+import 'package:e_com_wscube/constants/image_url_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -63,220 +65,392 @@ class _HomePageState extends State<HomePage> {
           "https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fGVjb21hcmNlJTIwcHJvZHVjdCUyMGltYWdlcyUyMGxhbnNjYXBlfGVufDB8fDB8fHww&auto=format&fit=crop&w=400&q=60",
     },
   ];
+
+  List<Map<String, dynamic>> specialArray = [
+    {
+      "imageUrl": "${ImageUrlConstant.wirelessHeadPhone}",
+      "title": "Wireless Headphones",
+      "price": 120,
+      "color": [Colors.black, Colors.lightBlue, ColorConstants.orange]
+    },
+    {
+      "imageUrl": "${ImageUrlConstant.womansSweater}",
+      "title": "Womans Sweater",
+      "price": 120,
+      "color": [Colors.grey, Colors.lightBlue, ColorConstants.orange]
+    },
+    {
+      "imageUrl": "${ImageUrlConstant.wirelessHeadPhone}",
+      "title": "Wireless Headphones",
+      "price": 120,
+      "color": [Colors.black, Colors.lightBlue, ColorConstants.orange]
+    },
+    {
+      "imageUrl": "${ImageUrlConstant.womansSweater}",
+      "title": "Womans Sweater",
+      "price": 120,
+      "color": [Colors.grey, Colors.lightBlue, ColorConstants.orange]
+    },
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: CurvedNavigationBar(
+        index: 2,
+        backgroundColor: Colors.transparent,
+        color: ColorConstants.orange,
+        buttonBackgroundColor: ColorConstants.orange,
+        height: 70,
+        items: [
+          Icon(
+            Icons.widgets_outlined,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.favorite,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.arrow_circle_up_outlined,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.shopping_cart,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.account_circle_outlined,
+            color: Colors.white,
+          ),
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 60,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: ColorConstants.grayLight,
-                  ),
-                  child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.apps,
-                        size: 30,
-                        color: ColorConstants.black,
-                      )),
-                ),
-                Container(
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: ColorConstants.grayLight,
-                  ),
-                  child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.notifications_outlined,
-                        size: 30,
-                        color: ColorConstants.black,
-                      )),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            TextField(
-              decoration: InputDecoration(
-                prefixIcon: const Icon(Icons.search_outlined),
-                hintText: "Search...",
-                hintStyle: const TextStyle(
-                  color: ColorConstants.gray,
-                  fontWeight: FontWeight.bold,
-                ),
-                prefixIconColor: ColorConstants.gray,
-                suffixIcon: Padding(
-                  padding: const EdgeInsets.only(right: 15),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: const [
-                      Text(
-                        '|',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: ColorConstants.gray,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Icon(
-                        Icons.air_outlined,
-                        color: ColorConstants.black,
-                      ),
-                    ],
-                  ),
-                ),
-                filled: true,
-                fillColor: ColorConstants.grayLight,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(50),
-                  borderSide: BorderSide.none,
-                ),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 60,
               ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Stack(
-              children: [
-                CarouselSlider.builder(
-                  itemCount: imgArray.length,
-                  itemBuilder: (context, index, realIndex) {
-                    return SizedBox(
-                      width: double.infinity,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-                        child: Image.network(
-                          imgArray[index],
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    );
-                  },
-                  options: CarouselOptions(
-                    viewportFraction: 1,
-                    onPageChanged: (index, reason) {
-                      setState(() {
-                        activeIndex = index;
-                      });
-                    },
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: ColorConstants.grayLight,
+                    ),
+                    child: IconButton(
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.apps,
+                          size: 30,
+                          color: ColorConstants.black,
+                        )),
                   ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Positioned(
-                  bottom: 7,
-                  left: 160,
-                  child: buildIndicator(activeIndex, imgArray.length),
-                ),
-                Positioned(
-                  top: 15,
-                  left: 20,
-                  child: Container(
-                      width: 180,
-                      height: 120,
-                      child: RichText(
-                          text: TextSpan(children: [
-                        TextSpan(
-                          text: "Super Sale ",
+                  Container(
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: ColorConstants.grayLight,
+                    ),
+                    child: IconButton(
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.notifications_outlined,
+                          size: 30,
+                          color: ColorConstants.black,
+                        )),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              TextField(
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.search_outlined),
+                  hintText: "Search...",
+                  hintStyle: const TextStyle(
+                    color: ColorConstants.gray,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  prefixIconColor: ColorConstants.gray,
+                  suffixIcon: Padding(
+                    padding: const EdgeInsets.only(right: 15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: const [
+                        Text(
+                          '|',
                           style: TextStyle(
-                            fontSize: 35,
-                            color: ColorConstants.black,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.bold,
+                            color: ColorConstants.gray,
                           ),
                         ),
-                        TextSpan(
-                            text: "Discount",
+                        SizedBox(
+                          width: 15,
+                        ),
+                        Icon(
+                          Icons.air_outlined,
+                          color: ColorConstants.black,
+                        ),
+                      ],
+                    ),
+                  ),
+                  filled: true,
+                  fillColor: ColorConstants.grayLight,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(50),
+                    borderSide: BorderSide.none,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Stack(
+                children: [
+                  CarouselSlider.builder(
+                    itemCount: imgArray.length,
+                    itemBuilder: (context, index, realIndex) {
+                      return SizedBox(
+                        width: double.infinity,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Image.network(
+                            imgArray[index],
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      );
+                    },
+                    options: CarouselOptions(
+                      viewportFraction: 1,
+                      onPageChanged: (index, reason) {
+                        setState(() {
+                          activeIndex = index;
+                        });
+                      },
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Positioned(
+                    bottom: 7,
+                    left: 160,
+                    child: buildIndicator(activeIndex, imgArray.length),
+                  ),
+                  Positioned(
+                    top: 15,
+                    left: 20,
+                    child: Container(
+                        width: 180,
+                        height: 120,
+                        child: RichText(
+                            text: TextSpan(children: [
+                          TextSpan(
+                            text: "Super Sale ",
                             style: TextStyle(
                               fontSize: 35,
                               color: ColorConstants.black,
                               fontWeight: FontWeight.w500,
-                            )),
-                        TextSpan(
-                            text: "\nup to",
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: ColorConstants.black,
-                              fontWeight: FontWeight.w600,
-                            )),
-                        TextSpan(
-                            text: " 50%",
-                            style: TextStyle(
-                              fontSize: 35,
-                              fontWeight: FontWeight.w900,
-                              color: ColorConstants.black,
-                            )),
-                      ]))),
-                ),
-                Positioned(
-                  bottom: 20,
-                  left: 20,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: ColorConstants.orange,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50))),
-                    onPressed: () {},
-                    child: Text(
-                      'Shop Now',
-                      style: TextStyle(
-                        color: Colors.white,
+                            ),
+                          ),
+                          TextSpan(
+                              text: "Discount",
+                              style: TextStyle(
+                                fontSize: 35,
+                                color: ColorConstants.black,
+                                fontWeight: FontWeight.w500,
+                              )),
+                          TextSpan(
+                              text: "\nup to",
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: ColorConstants.black,
+                                fontWeight: FontWeight.w600,
+                              )),
+                          TextSpan(
+                              text: " 50%",
+                              style: TextStyle(
+                                fontSize: 35,
+                                fontWeight: FontWeight.w900,
+                                color: ColorConstants.black,
+                              )),
+                        ]))),
+                  ),
+                  Positioned(
+                    bottom: 20,
+                    left: 20,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: ColorConstants.orange,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50))),
+                      onPressed: () {},
+                      child: Text(
+                        'Shop Now',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
                       ),
                     ),
-                  ),
-                )
-              ],
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: categoryArray
-                    .map((e) => Container(
-                          margin: const EdgeInsets.all(5),
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                width: 60,
-                                height: 60,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(50),
-                                  child: Image.network(
-                                    e['imgUrl'],
-                                    fit: BoxFit.cover,
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: categoryArray
+                      .map((e) => Container(
+                            margin: const EdgeInsets.all(5),
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  width: 60,
+                                  height: 60,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(50),
+                                    child: Image.network(
+                                      e['imgUrl'],
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              Container(
-                                alignment: Alignment.center,
-                                width: 60,
-                                child: Text('${e['catName']}'),
-                              )
-                            ],
-                          ),
-                        ))
-                    .toList(),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Container(
+                                  alignment: Alignment.center,
+                                  width: 60,
+                                  child: Text('${e['catName']}'),
+                                )
+                              ],
+                            ),
+                          ))
+                      .toList(),
+                ),
               ),
-            ),
-          ],
+              const SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Text(
+                    'Special For You',
+                    style: TextStyle(
+                        color: ColorConstants.black,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    'See all',
+                    style: TextStyle(
+                        color: ColorConstants.gray,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              GridView.builder(
+                padding: const EdgeInsets.all(0),
+                shrinkWrap: true,
+                itemCount: specialArray.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 10,
+                  childAspectRatio: 9 / 12,
+                ),
+                itemBuilder: (context, index) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(25),
+                      color: ColorConstants.grayLight,
+                    ),
+                    child: Stack(
+                      children: [
+                        Image.asset(specialArray[index]['imageUrl'].toString()),
+                        Positioned(
+                          bottom: 40,
+                          left: 25,
+                          child: Text(
+                            '${specialArray[index]['title']}',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 15,
+                          left: 25,
+                          child: SizedBox(
+                            width: 140,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  '\$${specialArray[index]['price']}',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 60,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children:
+                                        (specialArray[index]['color'] as List)
+                                            .map((e) => Container(
+                                                  width: 13,
+                                                  height: 13,
+                                                  decoration: BoxDecoration(
+                                                      shape: BoxShape.circle,
+                                                      color: e),
+                                                ))
+                                            .toList(),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                            right: 0,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(25),
+                                  bottomLeft: Radius.circular(15)),
+                              child: Container(
+                                alignment: Alignment.center,
+                                clipBehavior: Clip.none,
+                                width: 40,
+                                height: 40,
+                                decoration:
+                                    BoxDecoration(color: ColorConstants.orange),
+                                child: Icon(
+                                  Icons.favorite_outline,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ))
+                      ],
+                    ),
+                  );
+                },
+              )
+            ],
+          ),
         ),
       ),
     );
