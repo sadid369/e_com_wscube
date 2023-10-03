@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:e_com_wscube/constants/color_constants.dart';
 import 'package:e_com_wscube/constants/image_url_constant.dart';
+import 'package:e_com_wscube/widgets/dot_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -133,6 +134,7 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(
                 height: 60,
               ),
+              // Header
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -167,48 +169,53 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(
                 height: 15,
               ),
-              TextField(
-                decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.search_outlined),
-                  hintText: "Search...",
-                  hintStyle: const TextStyle(
-                    color: ColorConstants.gray,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  prefixIconColor: ColorConstants.gray,
-                  suffixIcon: Padding(
-                    padding: const EdgeInsets.only(right: 15),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: const [
-                        Text(
-                          '|',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: ColorConstants.gray,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 15,
-                        ),
-                        Icon(
-                          Icons.air_outlined,
-                          color: ColorConstants.black,
-                        ),
-                      ],
+              // Search bar
+              SizedBox(
+                height: 45,
+                child: TextField(
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.search_outlined),
+                    hintText: "Search...",
+                    hintStyle: const TextStyle(
+                      color: ColorConstants.gray,
+                      fontWeight: FontWeight.bold,
                     ),
-                  ),
-                  filled: true,
-                  fillColor: ColorConstants.grayLight,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(50),
-                    borderSide: BorderSide.none,
+                    prefixIconColor: ColorConstants.gray,
+                    suffixIcon: Padding(
+                      padding: const EdgeInsets.only(right: 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: const [
+                          Text(
+                            '|',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: ColorConstants.gray,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 15,
+                          ),
+                          Icon(
+                            Icons.air_outlined,
+                            color: ColorConstants.black,
+                          ),
+                        ],
+                      ),
+                    ),
+                    filled: true,
+                    fillColor: ColorConstants.grayLight,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(50),
+                      borderSide: BorderSide.none,
+                    ),
                   ),
                 ),
               ),
               const SizedBox(
                 height: 15,
               ),
+              // carousal image
               Stack(
                 children: [
                   CarouselSlider.builder(
@@ -303,12 +310,15 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(
                 height: 15,
               ),
+              //  Category
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: categoryArray
                       .map((e) => Container(
                             margin: const EdgeInsets.all(5),
+                            height: 100,
+                            // color: Colors.red,
                             child: Column(
                               children: [
                                 SizedBox(
@@ -323,10 +333,11 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ),
                                 SizedBox(
-                                  height: 20,
+                                  height: 5,
                                 ),
                                 Container(
                                   alignment: Alignment.center,
+                                  // color: Colors.blue,
                                   width: 60,
                                   child: Text('${e['catName']}'),
                                 )
@@ -339,6 +350,7 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(
                 height: 15,
               ),
+              //  Special for you
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: const [
@@ -456,19 +468,19 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget buildIndicator(int activeIndex, int count) {
-    return AnimatedSmoothIndicator(
-      activeIndex: activeIndex,
-      count: count,
-      effect: ExpandingDotsEffect(
-        dotWidth: 5,
-        dotHeight: 5,
-        dotColor: ColorConstants.black,
-        activeDotColor: ColorConstants.black,
-        spacing: 4,
-        paintStyle: PaintingStyle.stroke,
-        strokeWidth: 1.5,
-      ),
-    );
-  }
+  // Widget buildIndicator(int activeIndex, int count) {
+  //   return AnimatedSmoothIndicator(
+  //     activeIndex: activeIndex,
+  //     count: count,
+  //     effect: ExpandingDotsEffect(
+  //       dotWidth: 5,
+  //       dotHeight: 5,
+  //       dotColor: ColorConstants.black,
+  //       activeDotColor: ColorConstants.black,
+  //       spacing: 4,
+  //       paintStyle: PaintingStyle.stroke,
+  //       strokeWidth: 1.5,
+  //     ),
+  //   );
+  // }
 }
