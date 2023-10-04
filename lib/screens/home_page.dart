@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:e_com_wscube/constants/color_constants.dart';
 import 'package:e_com_wscube/constants/image_url_constant.dart';
+import 'package:e_com_wscube/screens/product_page.dart';
 import 'package:e_com_wscube/widgets/dot_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -384,79 +385,88 @@ class _HomePageState extends State<HomePage> {
                   childAspectRatio: 9 / 12,
                 ),
                 itemBuilder: (context, index) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
-                      color: ColorConstants.grayLight,
-                    ),
-                    child: Stack(
-                      children: [
-                        Image.asset(specialArray[index]['imageUrl'].toString()),
-                        Positioned(
-                          bottom: 40,
-                          left: 25,
-                          child: Text(
-                            '${specialArray[index]['title']}',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          bottom: 15,
-                          left: 25,
-                          child: SizedBox(
-                            width: 140,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  '\$${specialArray[index]['price']}',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 60,
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children:
-                                        (specialArray[index]['color'] as List)
-                                            .map((e) => Container(
-                                                  width: 13,
-                                                  height: 13,
-                                                  decoration: BoxDecoration(
-                                                      shape: BoxShape.circle,
-                                                      color: e),
-                                                ))
-                                            .toList(),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                            right: 0,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(25),
-                                  bottomLeft: Radius.circular(15)),
-                              child: Container(
-                                alignment: Alignment.center,
-                                clipBehavior: Clip.none,
-                                width: 40,
-                                height: 40,
-                                decoration:
-                                    BoxDecoration(color: ColorConstants.orange),
-                                child: Icon(
-                                  Icons.favorite_outline,
-                                  color: Colors.white,
-                                ),
+                  return InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const ProductPage(),
+                      ));
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        color: ColorConstants.grayLight,
+                      ),
+                      child: Stack(
+                        children: [
+                          Image.asset(
+                              specialArray[index]['imageUrl'].toString()),
+                          Positioned(
+                            bottom: 40,
+                            left: 25,
+                            child: Text(
+                              '${specialArray[index]['title']}',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
                               ),
-                            ))
-                      ],
+                            ),
+                          ),
+                          Positioned(
+                            bottom: 15,
+                            left: 25,
+                            child: SizedBox(
+                              width: 140,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    '\$${specialArray[index]['price']}',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 60,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children:
+                                          (specialArray[index]['color'] as List)
+                                              .map((e) => Container(
+                                                    width: 13,
+                                                    height: 13,
+                                                    decoration: BoxDecoration(
+                                                        shape: BoxShape.circle,
+                                                        color: e),
+                                                  ))
+                                              .toList(),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                              right: 0,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(25),
+                                    bottomLeft: Radius.circular(15)),
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  clipBehavior: Clip.none,
+                                  width: 40,
+                                  height: 40,
+                                  decoration: BoxDecoration(
+                                      color: ColorConstants.orange),
+                                  child: Icon(
+                                    Icons.favorite_outline,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ))
+                        ],
+                      ),
                     ),
                   );
                 },
