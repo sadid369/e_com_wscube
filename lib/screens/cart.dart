@@ -14,25 +14,26 @@ class _CartState extends State<Cart> {
     {
       "name": "Woman Sweater",
       "category": "Woman Fashion",
-      "price": 70,
+      "price": 70.00,
       "imgUrl": "${ImageUrlConstant.wirelessHeadPhone}",
     },
     {
       "name": "Woman Sweater",
       "category": "Woman Fashion",
-      "price": 70,
+      "price": 70.00,
       "imgUrl": "${ImageUrlConstant.womansSweater}",
     },
     {
       "name": "Woman Sweater",
       "category": "Woman Fashion",
-      "price": 70,
+      "price": 70.00,
       "imgUrl": "${ImageUrlConstant.wirelessHeadPhone}",
     },
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorConstants.grayLight,
       body: Column(
         children: [
           SizedBox(
@@ -84,100 +85,149 @@ class _CartState extends State<Cart> {
               itemCount: cartItemArray.length,
               itemBuilder: (context, index) {
                 return Container(
-                  alignment: Alignment.center,
-                  height: 150,
-                  margin: EdgeInsets.only(bottom: 20),
-                  padding: EdgeInsets.all(15),
-                  decoration: BoxDecoration(
+                    width: MediaQuery.of(context).size.width * 0.94,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(15)),
-                  child: ListTile(
-                    // isThreeLine: true,
-                    contentPadding: EdgeInsets.zero,
-                    leading: ConstrainedBox(
-                      constraints: BoxConstraints(
-                        minWidth: 100,
-                        minHeight: 260,
-                        maxWidth: 104,
-                        maxHeight: 264,
-                      ),
-                      child: Container(
-                        // width: 100,
-                        // height: 150,
-                        decoration: BoxDecoration(
-                            color: ColorConstants.grayLight,
-                            borderRadius: BorderRadius.circular(15)),
-                        child: Image.asset(
-                          cartItemArray[index]['imgUrl'],
-                          // height: 120
-                          fit: BoxFit.fitHeight,
-                        ),
-                      ),
-                    ),
-                    title: Text('${cartItemArray[index]['name']}'),
-                    subtitle: Text('${cartItemArray[index]['category']}'),
-                    trailing: Container(
-                      // color: Colors.purple,
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Icon(
-                              Icons.delete_outline,
-                              color: Colors.red,
+                      elevation: 10,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color: ColorConstants.grayLight,
                             ),
-                            SizedBox(
-                              height: 10,
+                            padding: const EdgeInsets.all(2.0),
+                            margin: EdgeInsets.all(10),
+                            child: ConstrainedBox(
+                              constraints: BoxConstraints(
+                                maxWidth:
+                                    MediaQuery.of(context).size.width * 0.28,
+                                maxHeight:
+                                    MediaQuery.of(context).size.width * 0.28,
+                              ),
+                              child: Image.asset(cartItemArray[index]['imgUrl'],
+                                  fit: BoxFit.fill),
                             ),
-                            Container(
-                              alignment: Alignment.center,
-                              // padding: EdgeInsets.all(8),
-                              width: 70,
-                              height: 20,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Colors.white,
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                SizedBox(
+                                  height: 7,
                                 ),
-                                borderRadius: BorderRadius.circular(30),
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    '-',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 15,
+                                Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.5,
+                                  child: Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                    child: Text(
+                                      '${cartItemArray[index]['name']}',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                      ),
                                     ),
                                   ),
-                                  // SizedBox(
-                                  //   width: 5,
-                                  // ),
-                                  Text(
-                                    '1',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 15,
+                                ),
+                                Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.5,
+                                  child: Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(5, 10, 0, 0),
+                                    child: Text(
+                                      '${cartItemArray[index]['category']}',
+                                      style: TextStyle(
+                                        color: ColorConstants.gray,
+                                        fontSize: 12,
+                                      ),
                                     ),
                                   ),
-                                  // SizedBox(
-                                  //   width: 5,
-                                  // ),
-                                  Text(
-                                    '+',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 15,
+                                ),
+                                Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.5,
+                                  child: Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(5, 10, 0, 0),
+                                    child: Text(
+                                      '\$${cartItemArray[index]['price']}',
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                          ]),
-                    ),
-                  ),
-                );
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(2),
+                            margin: EdgeInsets.all(10),
+                            // color: Colors.blue,
+                            width: 60,
+                            height: 120,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Icon(
+                                  Icons.delete_outline,
+                                  color: Colors.red,
+                                ),
+                                Container(
+                                  // alignment: Alignment.center,
+                                  // padding: EdgeInsets.all(8),
+                                  width: 60,
+                                  height: 20,
+                                  decoration: BoxDecoration(
+                                    color: ColorConstants.grayLight,
+                                    borderRadius: BorderRadius.circular(30),
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        '-',
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                      Text(
+                                        '1',
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                      Text(
+                                        '+',
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ));
               },
             ),
           )
