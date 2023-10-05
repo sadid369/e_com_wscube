@@ -1,3 +1,4 @@
+import 'package:e_com_wscube/screens/cart.dart';
 import 'package:e_com_wscube/screens/home_page.dart';
 import 'package:e_com_wscube/screens/product_page.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const HomePage());
+        home: const Cart());
   }
 }
