@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:e_com_wscube/constants/color_constants.dart';
 import 'package:e_com_wscube/constants/image_url_constant.dart';
+import 'package:e_com_wscube/screens/cart.dart';
 import 'package:e_com_wscube/screens/product_page.dart';
 import 'package:e_com_wscube/widgets/dot_indicator.dart';
 import 'package:flutter/material.dart';
@@ -103,6 +104,13 @@ class _HomePageState extends State<HomePage> {
         color: ColorConstants.orange,
         buttonBackgroundColor: ColorConstants.orange,
         height: 70,
+        onTap: (value) {
+          if (value == 3) {
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const Cart(),
+            ));
+          }
+        },
         items: [
           Icon(
             Icons.widgets_outlined,

@@ -77,7 +77,7 @@ class _CartState extends State<Cart> {
           ),
           Container(
             width: double.infinity,
-            height: 400,
+            height: 350,
             padding: const EdgeInsets.all(8),
             margin: EdgeInsets.all(10),
             child: ListView.builder(
@@ -91,7 +91,7 @@ class _CartState extends State<Cart> {
                         borderRadius: BorderRadius.circular(15),
                       ),
                       color: Colors.white,
-                      elevation: 10,
+                      // elevation: 10,
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
@@ -127,11 +127,13 @@ class _CartState extends State<Cart> {
                                   child: Padding(
                                     padding:
                                         const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                                    child: Text(
-                                      '${cartItemArray[index]['name']}',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18,
+                                    child: FittedBox(
+                                      child: Text(
+                                        '${cartItemArray[index]['name']}',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -173,10 +175,10 @@ class _CartState extends State<Cart> {
                             padding: EdgeInsets.all(2),
                             margin: EdgeInsets.all(10),
                             // color: Colors.blue,
-                            width: 60,
+                            width: 70,
                             height: 120,
                             child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Icon(
@@ -187,7 +189,7 @@ class _CartState extends State<Cart> {
                                   // alignment: Alignment.center,
                                   // padding: EdgeInsets.all(8),
                                   width: 60,
-                                  height: 20,
+                                  height: 25,
                                   decoration: BoxDecoration(
                                     color: ColorConstants.grayLight,
                                     borderRadius: BorderRadius.circular(30),
@@ -201,22 +203,22 @@ class _CartState extends State<Cart> {
                                       Text(
                                         '-',
                                         style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 12,
+                                          color: Colors.black87,
+                                          fontSize: 18,
                                         ),
                                       ),
                                       Text(
                                         '1',
                                         style: TextStyle(
-                                          color: Colors.black,
+                                          color: Colors.black87,
                                           fontSize: 12,
                                         ),
                                       ),
                                       Text(
                                         '+',
                                         style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 12,
+                                          color: Colors.black87,
+                                          fontSize: 18,
                                         ),
                                       ),
                                     ],
@@ -229,6 +231,119 @@ class _CartState extends State<Cart> {
                       ),
                     ));
               },
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            height: 280,
+            padding: EdgeInsets.all(20),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(15),
+                  topRight: Radius.circular(15),
+                ),
+                color: Colors.white),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 45,
+                  child: TextField(
+                    // textAlign: TextAlign.center,
+                    textAlignVertical: TextAlignVertical.center,
+                    decoration: InputDecoration(
+                        contentPadding: EdgeInsets.only(left: 20),
+                        filled: true,
+                        fillColor: ColorConstants.grayLight,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(35),
+                          borderSide: BorderSide.none,
+                        ),
+                        hintText: "Enter Discount Code",
+                        hintStyle:
+                            TextStyle(color: ColorConstants.gray, fontSize: 14),
+                        suffixIcon: TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            'Apply',
+                            style: TextStyle(
+                              color: ColorConstants.orange,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
+                          ),
+                        )),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Subtotal',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: ColorConstants.gray,
+                      ),
+                    ),
+                    Text(
+                      '\$245.00',
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: ColorConstants.black,
+                          fontWeight: FontWeight.bold),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                Divider(
+                  thickness: 2,
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Total',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: ColorConstants.gray,
+                      ),
+                    ),
+                    Text(
+                      '\$245.00',
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: ColorConstants.black,
+                          fontWeight: FontWeight.bold),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 45,
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  height: 50,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: ColorConstants.orange,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                    onPressed: () {},
+                    child: Text("Checkout"),
+                  ),
+                )
+              ],
             ),
           )
         ],
